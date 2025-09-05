@@ -64,3 +64,9 @@ header {
     margin: 5px;
   }
 }
+#contact p {
+  display: block;
+  visibility: visible;
+  z-index: 10;
+}
+
