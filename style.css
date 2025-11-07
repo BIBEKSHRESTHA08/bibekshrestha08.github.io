@@ -1,72 +1,116 @@
+/* 🌟 Creative, Modern, and Attractive Academic Styles */
+
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
+    /* Set a dark, sophisticated base background for contrast */
+    background-color: #f0f3f8; /* Very Light Slate/Blue-Gray */
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    color: #1a202c; /* Deep Charcoal Text for Readability */
 }
 
+/* --- Container & Layout Depth --- */
+
+.page-container {
+    max-width: 1100px;
+    background-color: #ffffff; /* Crisp White Content Background */
+    /* Stronger, more modern shadow for a "floating" effect */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+    border-radius: 12px; /* Smoother, more modern rounded corners */
+    overflow: hidden; /* Ensures content stays within the rounded borders */
+}
+
+/* Header styling for a clean separation */
 header {
-  background: #2c3e50;
-  color: white;
-  padding: 20px;
-  text-align: center;
+    border-bottom: 1px solid #e2e8f0; /* Lighter divider */
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
-nav a {
-  color: white;
-  margin: 0 10px;
-  text-decoration: none;
+h1 {
+    font-weight: 300; /* Lighter font weight for a modern H1 */
 }
 
-section {
-  padding: 20px;
+.text-red-700 {
+    color: #4a5568; /* Use a deep gray/navy for professional title accents */
+    font-weight: 600;
 }
 
-footer {
-  text-align: center;
-  padding: 10px;
-  background: #333;
-  color: white;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+/* --- Navigation & Links (Sidebar) --- */
+
+.nav-link {
+    @apply block py-2.5 text-base font-medium text-gray-600 transition-all duration-250;
+    /* Adding a hover state that 'lifts' the link slightly */
+    padding-left: 0.75rem;
 }
 
-.profile-pic {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%; /* makes it circular */
-  object-fit: cover;
-  border: 4px solid white; /* nice border */
-  margin-bottom: 15px;
+.nav-link:hover {
+    color: #dd6b20; /* Vibrant, deep orange/gold accent */
+    transform: translateX(5px); /* Slide effect on hover */
+    background-color: rgba(221, 107, 32, 0.05); /* Very light highlight background */
 }
 
-header {
-  background: #2c3e50;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  display: flex;
-  flex-direction: column; /* stacked for mobile */
-  align-items: center;
+.nav-link.active {
+    color: #dd6b20; /* Use the vibrant orange/gold accent color */
+    @apply font-extrabold; /* Stronger visual emphasis */
+    border-left: 4px solid #dd6b20; /* Bold left border highlight */
+    padding-left: calc(0.75rem - 4px); /* Adjust padding due to border */
 }
 
-@media (min-width: 700px) {
-  header {
-    flex-direction: row; /* side by side for bigger screens */
-    justify-content: center;
-    text-align: left;
-  }
-  header img {
-    margin-right: 20px;
-  }
-  header h1, header p, header nav {
-    margin: 5px;
-  }
-}
-#contact p {
-  display: block;
-  visibility: visible;
-  z-index: 10;
+/* Custom link colors in the content area */
+.content-link {
+    color: #3182ce; /* Standard but pleasing academic blue */
+    @apply font-semibold;
+    text-decoration: none; /* Remove default underline */
+    border-bottom: 1px dashed #3182ce; /* Creative, subtle dashed underline */
+    transition: color 0.2s, border-bottom 0.2s;
 }
 
+.content-link:hover {
+    color: #000000; /* Darken text on hover */
+    border-bottom: 1px solid #000000; /* Solid underline on hover */
+}
+
+/* --- Section Content Enhancements --- */
+
+.content-section {
+    display: none;
+}
+
+h2 {
+    /* Stronger visual break for section titles */
+    border-bottom: 3px solid #dd6b20; /* Thick orange accent underline */
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600; /* Semibold for titles */
+    color: #1a202c;
+}
+
+/* Styling for project list items to give them separation */
+.content-section ul li {
+    background-color: #f7f9fc; /* Slight background for list items */
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid #3182ce; /* Blue left border for project differentiation */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.content-section ul li h3 {
+    color: #4a5568; /* Darker heading color */
+    font-size: 1.15rem;
+}
+
+/* --- Responsive Adjustments --- */
+
+@media (max-width: 768px) {
+    .page-container {
+        box-shadow: none;
+        border-radius: 0;
+        @apply flex-col;
+    }
+    .sidebar {
+        @apply w-full p-4 border-b border-gray-200;
+    }
+    .main-content-area {
+        @apply w-full p-6;
+    }
+}
