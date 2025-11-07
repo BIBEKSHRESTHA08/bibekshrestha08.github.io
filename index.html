@@ -1,59 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bibek Shrestha - Personal Website</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibek Shrestha - ECE, AI & Robotics</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for academic clarity */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7; /* Very light gray background for the overall page */
+        }
+        /* Style for the sidebar links */
+        .nav-link {
+            @apply block py-1.5 text-base font-normal text-gray-700 hover:text-red-700 hover:underline transition-all duration-150;
+        }
+        .nav-link.active {
+            @apply font-bold text-red-800 underline;
+        }
+        /* Custom link colors in the content area */
+        .content-link {
+             @apply text-blue-700 hover:text-blue-900 font-medium;
+        }
+        /* Hide sections initially */
+        .content-section {
+            display: none;
+        }
+        /* Utility to ensure the footer does not overlap content */
+        main {
+            min-height: calc(100vh - 40px); /* Ensure content pushes the footer down */
+        }
+        /* The main container width to mimic the provided academic page aesthetic */
+        .page-container {
+            max-width: 1000px;
+        }
+
+        /* Responsive adjustments for the sidebar */
+        @media (max-width: 768px) {
+            .page-container {
+                @apply flex-col;
+            }
+            .sidebar {
+                @apply w-full p-4 border-b border-gray-200;
+            }
+            .main-content-area {
+                @apply w-full p-6;
+            }
+        }
+    </style>
+    <script>
+        // Check for global variables and initialize config
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const apiKey = ""; // API key for external calls
+        
+        // This function handles the "page switching" by showing the selected section
+        function setActiveSection(sectionId) {
+            // Hide all content sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            // Show the target section
+            const activeSection = document.getElementById(sectionId);
+            if (activeSection) {
+                activeSection.style.display = 'block';
+            }
+
+            // Update active link styles
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            const activeLink = document.querySelector(`.nav-link[data-section="${sectionId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+
+        // Set the default view on page load
+        window.onload = function() {
+            // Default view is the 'home' section
+            setActiveSection('home');
+        };
+    </script>
 </head>
-<body>
-  <header>
-    <img src="bibek-pic.jpg" alt="Bibek Shrestha" class="profile-pic">
-    <h1>Hi, I'm Bibek Shrestha 👋</h1>
-    <p>Electronics & Communication Engineer | AI & Robotics Enthusiast</p>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+<body class="bg-white text-gray-800">
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>I am passionate about robotics, AI, and teaching STEM. I love building solutions that connect software and hardware.</p>
-  </section>
+    <div class="page-container mx-auto p-4 md:p-8">
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <ul>
-      <li><b>AI Traffic Management</b> – Research on AI-based traffic optimization.</li>
-      <li><b>Accident Detection System</b> – Final year project using MPU-6050.</li>
-      <li><b>STEM Trainer</b> – Teaching coding, robotics, and electronics.</li>
-    </ul>
-  </section>
+        <!-- Header mimicking the academic logo/name section -->
+        <header class="flex justify-between items-start mb-6 border-b pb-4">
+            <h1 class="text-3xl md:text-4xl font-light text-gray-900 tracking-tight">Bibek Shrestha</h1>
+            <!-- Placeholder for university logo/affiliation -->
+            <div class="text-right">
+                <p class="text-sm font-semibold text-red-700">Electronics, Communication & Information Engineer</p>
+                <p class="text-xs text-gray-500">AI, Robotics & Quantum Enthusiast</p>
+            </div>
+        </header>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:bibekshrestha881@gmail.com">bibekshrestha881@gmail.com</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/bibek-shrestha-b73095259/" target="_blank">linkedin.com/in/Bibek Shrestha</a></p>
-    <p>GitHub: <a href="https://github.com/BIBEKSHRESTHA08" target="_blank">github.com/Bibek Shrestha</a></p>
-    <p>CV: <a href="https://drive.google.com/drive/folders/11VK08M0vjTe7zJIuaiQjf_ewoAiNN72T" target="_blank">CV / Bibek Shrestha</a></p>
-    <p>CV: <a href="https://drive.google.com/drive/folders/11VK08M0vjTe7zJIuaiQjf_ewoAiNN72T" target="_blank">CV / Bibek Shrestha</a></p>
+        <!-- Main Layout: Sidebar and Content Area -->
+        <div class="page-container flex flex-col md:flex-row gap-8">
+            
+            <!-- Left Sidebar Navigation -->
+            <aside class="sidebar w-full md:w-1/5 min-w-[150px]">
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link active" data-section="home" onclick="setActiveSection('home')">Home / Bio</a></li>
+                        <li><a href="#" class="nav-link" data-section="projects" onclick="setActiveSection('projects')">Projects</a></li>
+                        <li><a href="#" class="nav-link" data-section="contact" onclick="setActiveSection('contact')">Contact</a></li>
+                        <!-- Add more sections here as your site grows -->
+                        <li><a href="https://drive.google.com/drive/folders/11VK08M0vjTe7zJIuaiQjf_ewoAiNN72T" target="_blank" class="nav-link">CV / Resume (External)</a></li>
+                    </ul>
+                </nav>
+            </aside>
 
-  </section>
+            <!-- Main Content Area -->
+            <main class="main-content-area flex-grow w-full md:w-4/5">
+                
+                <!-- HOME / BIO SECTION (Default View) -->
+                <section id="home" class="content-section">
+                    <div class="flex flex-col md:flex-row gap-6 items-start mb-8">
+                        <!-- Profile Picture Placeholder -->
+                        <div class="profile-pic-container flex-shrink-15">
+                            <!-- NOTE: Using a placeholder as the original path was local (C:\...) -->
+                            <img src="bibek-pic.jpg" alt="Bibek Shrestha" style="width: 150px; height: 180px; object-fit: cover;">
+                        </div>
+                        
+                        <!-- Main Affiliation and Quick Links -->
+                        <div class="info-block">
+                            <p class="text-lg font-semibold text-gray-700 mb-1">Assistant Lecturer</p>
+                            <p class="text-base text-gray-500">Electronics, Communication & Information Engineering</p>
+                            <div class="mt-2 space-x-3 text-sm">
+                                <a href="mailto:bibekshrestha881@gmail.com" class="content-link">Email</a> | 
+                                <a href="https://www.linkedin.com/in/bibek-shrestha-b73095259/" target="_blank" class="content-link">LinkedIn</a> | 
+                                <a href="https://github.com/BIBEKSHRESTHA08" target="_blank" class="content-link">GitHub</a> | 
+                                <a href="https://drive.google.com/drive/folders/11VK08M0vjTe7zJIuaiQjf_ewoAiNN72T" target="_blank" class="content-link">CV</a>
+                            </div>
+                        </div>
+                    </div>
 
-  <footer>
-    <p>© 2025 Bibek Shrestha. All rights reserved.</p>
-  </footer>
+                    <h2 class="text-2xl font-normal border-b pb-2 mb-4 mt-6">About Me</h2>
+                    <p class="text-lg leading-relaxed">I am working as Assistant Lecturer in Cosmos College of Management and Technology (Pokhara University) and Visiting Lecturer at National College of Engieering (NCE) (Tribhuvan University) & National College of Technology and Management (NCMT) (Lincoln University).
+                        Previously I worked as STEM (robotics and coding) instructor as well as research & development associate in Dursikshya education Network.   </p>
+                    <p class="text-base mt-4">My background includes extensive experience in integrating hardware, computer vision, and machine learning to solve real-world problems, such as AI based traffic management system and Vehicle accident detection. I am also deeply committed to education, working as a STEM Trainer/Instructor to teach coding, robotics, and electronics to the next generation of engineers.</p>
+
+                </section>
+
+                <!-- PROJECTS SECTION -->
+                <section id="projects" class="content-section">
+                    <h2 class="text-2xl font-normal border-b pb-2 mb-4">Selected Projects</h2>
+                    <ul class="space-y-6 list-disc pl-5">
+                        <li class="pl-2">
+                            <h3 class="font-bold text-lg mb-1">AI Based Traffic Management System</h3>
+                            <p class="text-gray-700">This project involved integrating hardware, computer vision, and machine learning to create an intelligent traffic light control system. It utilized object detection with **YOLOv7**, real-time image processing, and a microcontroller-based light control system. This research was later published in *The International Journal of Educational Practices and Engineering*.</p>
+                        </li>
+                        <li class="pl-2">
+                            <h3 class="font-bold text-lg mb-1">Vehicle Accident Detection System Using MPU6050</h3>
+                            <p class="text-gray-700">Built using Arduino, this system combined renewable energy, sensors (MPU6050), and actuators to create a smart tracking and reporting mechanism through GSM. The implementation integrated deep learning algorithms to improve accuracy in accident detection and reporting.</p>
+                        </li>
+                        <li class="pl-2">
+                            <h3 class="font-bold text-lg mb-1">STEM Trainer/Instructor</h3>
+                            <p class="text-gray-700">Developed and delivered curriculum for teaching coding, robotics, and fundamental electronics concepts to students of various age groups, fostering interest and practical skills in the STEM field.</p>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- CONTACT SECTION -->
+                <section id="contact" class="content-section">
+                    <h2 class="text-2xl font-normal border-b pb-2 mb-4">Contact & Links</h2>
+                    <div class="space-y-3">
+                        <p><strong>Email:</strong> <a href="mailto:bibekshrestha881@gmail.com" class="content-link">bibekshrestha881@gmail.com</a></p>
+                        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/bibek-shrestha-b73095259/" target="_blank" class="content-link">linkedin.com/in/Bibek-Shrestha</a></p>
+                        <p><strong>GitHub:</strong> <a href="https://github.com/BIBEKSHRESTHA08" target="_blank" class="content-link">github.com/BIBEKSHRESTHA08</a></p>
+                        <p><strong>Google Scholar:</strong> <a href="https://scholar.google.com/citations?user=CVACgbMAAAAJ&hl=en" target="_blank" class="content-link">scholar.google.com/BIBEKSHRESTHA</a></p>
+                        <p><strong>Researcg Gate:</strong> <a href="https://www.researchgate.net/profile/Bibek-Shrestha-27?ev=hdr_xprf" target="_blank" class="content-link">researchgate.net/BIBEKSHRESTHA</a></p>
+                        
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer - static and simple -->
+    <footer class="mt-12 py-4 border-t text-center text-sm text-gray-500">
+        <p>© 2025 Bibek Shrestha. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
