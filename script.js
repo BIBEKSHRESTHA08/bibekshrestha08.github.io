@@ -41,7 +41,7 @@ document.addEventListener('mousemove', e => {
 })();
 
 // Expand ring on interactive elements
-const hoverTargets = 'a, button, .project-card, .contact-card, .research-cell, .stat-box';
+const hoverTargets = 'a, button, .Project-card, .contact-card, .research-cell, .stat-box';
 document.querySelectorAll(hoverTargets).forEach(el => {
   el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
   el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
@@ -75,7 +75,7 @@ function showSection(event, id) {
     next.classList.add('section-active');
 
     // Per-section entrance animations
-    if (id === 'projects') setTimeout(animateProjects,    100);
+    if (id === 'Projects') setTimeout(animateProjects,    100);
     if (id === 'contact')  setTimeout(animateContactCards, 100);
     if (id === 'home')     setTimeout(animateTimeline,     300);
   }, 200);
@@ -107,9 +107,9 @@ function animateCounters() {
   });
 }
 
-/* ── STAGGERED ENTRANCE — PROJECTS ──────── */
+/* ── STAGGERED ENTRANCE — ProjectS ──────── */
 function animateProjects() {
-  document.querySelectorAll('.project-card').forEach((card, i) => {
+  document.querySelectorAll('.Project-card').forEach((card, i) => {
     card.style.opacity   = '0';
     card.style.transform = 'translateY(20px)';
 
