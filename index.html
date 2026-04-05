@@ -1,207 +1,450 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bibek Shrestha - ECE, AI & Robotics</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f7f7f7;
-        }
-        /* Custom link behavior since we can't use @apply in <style> with CDN */
-        .nav-link-active {
-            font-weight: 700 !important;
-            color: #991b1b !important; /* red-800 */
-            text-decoration: underline;
-        }
-        .content-section {
-            display: none;
-        }
-        /* Reveal animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .section-active {
-            display: block;
-            animation: fadeIn 0.4s ease-out;
-        }
-    </style>
-    <script>
-        function setActiveSection(event, sectionId) {
-            if (event) event.preventDefault();
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bibek Shrestha — AI · Robotics · ECE</title>
 
-            // Hide all sections
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.classList.remove('section-active');
-            });
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 
-            // Show target section
-            const target = document.getElementById(sectionId);
-            if (target) {
-                target.classList.add('section-active');
-            }
-
-            // Update Link Styles
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('nav-link-active');
-            });
-            
-            // Handle both desktop and mobile link highlighting
-            if (event) {
-                event.currentTarget.classList.add('nav-link-active');
-            } else {
-                // Default load
-                document.querySelector(`[data-section="${sectionId}"]`).classList.add('nav-link-active');
-            }
-            
-            // Scroll to top on mobile when switching sections
-            if (window.innerWidth < 768) {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-
-        window.onload = function() {
-            setActiveSection(null, 'home');
-        };
-    </script>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-white text-gray-800">
+<body>
 
-    <div class="max-w-[1000px] mx-auto p-6 md:p-12">
+  <!-- ═══ LOADER ═══ -->
+  <div id="loader">
+    <div class="loader-name">Bibek Shrestha</div>
+    <div class="loader-bar"></div>
+  </div>
 
-        <header class="flex flex-col md:flex-row justify-between items-start mb-8 border-b pb-6">
-            <div>
-                <h1 class="text-4xl font-light text-gray-900 tracking-tight">Bibek Shrestha</h1>
-                <p class="text-red-700 font-semibold mt-1">Electronics, Communication & Information Engineer</p>
-            </div>
-            <div class="mt-4 md:mt-0 md:text-right">
-                <p class="text-sm text-gray-500 italic">AI, Robotics & Quantum Enthusiast</p>
-            </div>
-        </header>
+  <!-- ═══ CUSTOM CURSOR ═══ -->
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
 
-        <div class="flex flex-col md:flex-row gap-12">
-            
-            <aside class="w-full md:w-1/4">
-                <nav class="sticky top-8">
-                    <ul class="space-y-3">
-                        <li>
-                            <a href="#" class="nav-link block text-gray-600 hover:text-red-700 hover:underline transition-colors" 
-                               data-section="home" onclick="setActiveSection(event, 'home')">Home / Bio</a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link block text-gray-600 hover:text-red-700 hover:underline transition-colors" 
-                               data-section="projects" onclick="setActiveSection(event, 'projects')">Projects</a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link block text-gray-600 hover:text-red-700 hover:underline transition-colors" 
-                               data-section="contact" onclick="setActiveSection(event, 'contact')">Contact</a>
-                        </li>
-                        <li class="pt-4 border-t border-gray-100">
-                            <a href="https://drive.google.com/drive/folders/11VK08M0vjTe7zJIuaiQjf_ewoAiNN72T" 
-                               target="_blank" class="block text-sm font-medium text-blue-600 hover:text-blue-800">
-                               CV / Resume (External) ↗
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </aside>
+  <!-- ═══ AMBIENT GLOW ORBS ═══ -->
+  <div class="ambient ambient-1"></div>
+  <div class="ambient ambient-2"></div>
 
-            <main class="w-full md:w-3/4 min-h-[60vh]">
-                
-                <section id="home" class="content-section">
-                    <div class="flex flex-col sm:flex-row gap-8 items-start mb-10">
-                        <div class="flex-shrink-0">
-                            <img src="bibek-pic.jpg" alt="Bibek Shrestha" 
-                                 class="w-40 h-52 object-cover rounded shadow-md border border-gray-100">
-                        </div>
-                        
-                        <div class="space-y-4">
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-800">Assistant Lecturer</h3>
-                                <p class="text-gray-600">Cosmos College of Management and Technology</p>
-                                <p class="text-sm text-gray-500">(Pokhara University)</p>
-                            </div>
-                            <div class="flex flex-wrap gap-3 text-sm">
-                                <a href="mailto:bibekshrestha881@gmail.com" class="text-blue-600 hover:underline font-medium">Email</a>
-                                <span class="text-gray-300">|</span>
-                                <a href="https://www.linkedin.com/in/bibek-shrestha-b73095259/" target="_blank" class="text-blue-600 hover:underline font-medium">LinkedIn</a>
-                                <span class="text-gray-300">|</span>
-                                <a href="https://github.com/BIBEKSHRESTHA08" target="_blank" class="text-blue-600 hover:underline font-medium">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
+  <!-- ═══ PAGE WRAPPER ═══ -->
+  <div class="page">
 
-                    <h2 class="text-2xl font-semibold border-b pb-2 mb-4 text-gray-900">About Me</h2>
-                    <div class="prose prose-slate max-w-none text-gray-700 leading-relaxed space-y-4">
-                        <p>
-                            I am currently serving as an <strong>Assistant Lecturer</strong> at Cosmos College of Management and Technology and a Visiting Lecturer at the <strong>National College of Engineering (NCE, TU)</strong> and Lincoln College.
-                        </p>
-                        <p>
-                            With a background as a STEM instructor and R&D Associate at Dursikshya Education Network, I specialize in the intersection of hardware, computer vision, and machine learning. My core research interests lie in <strong>Artificial Intelligence</strong> and <strong>Deep Learning (DL)</strong> models for real-world robotics and automation.
-                        </p>
-                    </div>
-                </section>
+    <!-- ── TOP BANNER ── -->
+    <div class="top-banner">
+      <div class="banner-logo"><span>Portfolio</span></div>
 
-                <section id="projects" class="content-section">
-                    <h2 class="text-2xl font-semibold border-b pb-2 mb-6 text-gray-900">Selected Projects</h2>
-                    <div class="space-y-8">
-                        <div class="border-l-4 border-red-700 pl-4">
-                            <h3 class="font-bold text-lg text-gray-800">AI Based Traffic Management System</h3>
-                        </div>
-                        
-                        <div class="border-l-4 border-red-700 pl-4">
-                            <h3 class="font-bold text-lg text-gray-800">Vehicle Accident Detection System (MPU6050)</h3>
-                        </div>
+      <div class="banner-status">
+        <div class="status-dot"></div>
+        open to collaboration
+      </div>
 
-                        <div class="border-l-4 border-red-700 pl-4">
-                            <h3 class="font-bold text-lg text-gray-800">Optimizing CNNs for Steering Prediction</h3>
-                        </div>
-
-                        <div class="border-l-4 border-red-700 pl-4">
-                            <h3 class="font-bold text-lg text-gray-800">NEPSE Stock Index Prediction using LSTM</h3>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="contact" class="content-section">
-                    <h2 class="text-2xl font-semibold border-b pb-2 mb-6 text-gray-900">Contact & Research Links</h2>
-                    <div class="grid grid-cols-1 gap-4">
-                        <div class="p-4 bg-gray-50 rounded-lg flex items-center justify-between">
-                            <span class="font-semibold">Email</span>
-                            <a href="mailto:bibekshrestha881@gmail.com" class="text-blue-700 hover:underline">bibekshrestha881@gmail.com</a>
-                        </div>
-                        <div class="p-4 bg-gray-50 rounded-lg flex items-center justify-between">
-                            <span class="font-semibold">LinkedIn</span>
-                            <a href="https://www.linkedin.com/in/bibek-shrestha-b73095259/" target="_blank" class="text-blue-700 hover:underline">bibek-shrestha</a>
-                        </div>
-                        <div class="p-4 bg-gray-50 rounded-lg flex items-center justify-between">
-                            <span class="font-semibold">Google Scholar</span>
-                            <a href="https://scholar.google.com/citations?user=CVACgbMAAAAJ&hl=en" target="_blank" class="text-blue-700 hover:underline">View Publications</a>
-                        </div>
-                        <div class="p-4 bg-gray-50 rounded-lg flex items-center justify-between">
-                            <span class="font-semibold">ResearchGate</span>
-                            <a href="https://www.researchgate.net/profile/Bibek-Shrestha-27" target="_blank" class="text-blue-700 hover:underline">Bibek Shrestha Profile</a>
-                        </div>
-                        <div class="p-4 bg-gray-50 rounded-lg flex items-center justify-between">
-                            <span class="font-semibold">GitHub</span>
-                            <a href="https://github.com/BIBEKSHRESTHA08" target="_blank" class="text-blue-700 hover:underline">BIBEKSHRESTHA08</a>
-                        </div>
-                    </div>
-                </section>
-
-            </main>
-        </div>
+      <nav class="banner-nav">
+        <button class="banner-btn active" data-section="home"     onclick="showSection(event,'home')">home</button>
+        <button class="banner-btn"        data-section="projects" onclick="showSection(event,'projects')">projects</button>
+        <button class="banner-btn"        data-section="contact"  onclick="showSection(event,'contact')">contact</button>
+      </nav>
     </div>
 
-    <footer class="mt-20 py-8 border-t bg-gray-50 text-center text-sm text-gray-500">
-        <p>© 2026 Bibek Shrestha. All rights reserved.</p>
-        <p class="mt-1">Built with HTML5, Tailwind CSS & JavaScript</p>
+    <!-- ── BODY GRID ── -->
+    <div class="body-grid">
+
+      <!-- ──────────── SIDEBAR ──────────── -->
+      <aside class="sidebar">
+
+        <!-- Profile -->
+        <div>
+          <div class="profile-frame">
+            <div class="profile-corner tl"></div>
+            <div class="profile-corner br"></div>
+            <img src="bibek-pic.jpg" alt="Bibek Shrestha"
+                 onerror="this.style.background='linear-gradient(135deg,#272e45,#1a1f2e)';this.alt=''">
+          </div>
+          <div class="profile-name">Bibek<br>Shrestha</div>
+          <div class="profile-title">ECE Engineer</div>
+          <div class="profile-inst">LIC, Cosmos, NCE</div>
+        </div>
+
+        <!-- Sidebar navigation -->
+        <nav class="sidebar-nav">
+          <p class="nav-section-label">Sections</p>
+          <ul>
+            <li class="nav-item">
+              <a href="#" class="active" data-section="home" onclick="showSection(event,'home')">
+                <span class="nav-index">01</span> Home 
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" data-section="projects" onclick="showSection(event,'projects')">
+                <span class="nav-index">02</span> Projects
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" data-section="contact" onclick="showSection(event,'contact')">
+                <span class="nav-index">03</span> Contact
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Stats -->
+        <div>
+          <p class="nav-section-label" style="margin-bottom:10px">// metrics</p>
+          <div class="stats-grid">
+            <div class="stat-box">
+              <div class="stat-val" data-target="4">0</div>
+              <div class="stat-label">Papers</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val" data-target="6">0</div>
+              <div class="stat-label">Institutions</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val" data-target="5">0</div>
+              <div class="stat-label">Yrs Teaching</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val" data-target="8">0</div>
+              <div class="stat-label">Research Areas</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- External links -->
+        <div>
+          <p class="nav-section-label" style="margin-bottom:10px">// external</p>
+          <div class="sidebar-links">
+
+            <a href="https://drive.google.com/drive/folders/11VK08M0vjTe7zJIuaiQjf_ewoAiNN72T"
+               target="_blank" class="s-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              CV / Resume <span class="s-link-arrow">↗</span>
+            </a>
+
+            <a href="https://scholar.google.com/citations?user=CVACgbMAAAAJ&hl=en"
+               target="_blank" class="s-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.14 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.05 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 17z"/>
+              </svg>
+              Google Scholar <span class="s-link-arrow">↗</span>
+            </a>
+
+            <a href="https://www.researchgate.net/profile/Bibek-Shrestha-27"
+               target="_blank" class="s-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+              ResearchGate <span class="s-link-arrow">↗</span>
+            </a>
+
+            <a href="https://github.com/BIBEKSHRESTHA08"
+               target="_blank" class="s-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+              </svg>
+              GitHub <span class="s-link-arrow">↗</span>
+            </a>
+
+          </div>
+        </div>
+
+      </aside>
+      <!-- ──────────── END SIDEBAR ──────────── -->
+
+      <!-- ──────────── MAIN CONTENT ──────────── -->
+      <main class="main">
+
+        <!-- ═══ HOME ═══ -->
+        <section id="home" class="content-section section-active">
+
+          <div class="sec-eyebrow">Introduction</div>
+          <h1 class="sec-title">Engineer.<br>Researcher.<br><em>Lecturer
+
+          </em></h1>
+
+          <div class="roles">
+            <span class="role featured">Asst. Lecturer @ Lincoln International College</span>
+            <span class="role">Visiting Lecturer @ Cosmos College, PU</span>
+            <span class="role">Visiting Lecturer @ NCE, TU</span>
+            <span class="role">Visiting Lecturer @ NCMT College</span>
+            <span class="role">R&amp;D Associate @ Dursikshya</span>
+            <span class="role">STEM Instructor</span>
+          </div>
+
+          <div class="home-intro">
+            <p>
+              I'm an <strong>Electronics, Communication &amp; Information Engineer</strong> working at the
+              intersection of hardware, computer vision, and machine learning-building systems that bridge
+              theoretical research with real-world deployment.
+            </p>
+          </div>
+
+          <div class="sec-eyebrow" style="margin-bottom:16px">Research Areas</div>
+          <div class="research-grid">
+            <div class="research-cell">
+              <span class="rc-icon">🧠</span>
+              <div class="rc-name">Deep Learning</div>
+              <div class="rc-desc">CNNs, LSTMs, Transformers</div>
+            </div>
+            <div class="research-cell">
+              <span class="rc-icon">👁️</span>
+              <div class="rc-name">Computer Vision</div>
+              <div class="rc-desc">Detection, Segmentation, Tracking</div>
+            </div>
+            <div class="research-cell">
+              <span class="rc-icon">🤖</span>
+              <div class="rc-name">Robotics</div>
+              <div class="rc-desc">Autonomous Systems, Control</div>
+            </div>
+            <div class="research-cell">
+              <span class="rc-icon">⚡</span>
+              <div class="rc-name">Embedded AI</div>
+              <div class="rc-desc">Edge Computing, IoT</div>
+            </div>
+            <div class="research-cell">
+              <span class="rc-icon">📈</span>
+              <div class="rc-name">Time Series</div>
+              <div class="rc-desc">Forecasting, LSTM Models</div>
+            </div>
+            <div class="research-cell">
+              <span class="rc-icon">⚛️</span>
+              <div class="rc-name">Quantum Computing</div>
+              <div class="rc-desc">QML, Quantum Circuits</div>
+            </div>
+          </div>
+
+          <div class="sec-eyebrow" style="margin:40px 0 20px">Experience Timeline</div>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-year">2025 Dec. — Present</div>
+              <div class="tl-role">Lecturer</div>
+              <div class="tl-org">Lincoln International College (Lincoln University)</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-year">2025 April — 2025 Dec.</div>
+              <div class="tl-role">Visiting Lecturer</div>
+              <div class="tl-org">National College of Engineering (NCE, TU)</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-year">2024 Sept. — 2025 Dec.</div>
+              <div class="tl-role">Visiting Lecturer</div>
+              <div class="tl-org">Cosmos College of Management and Technology (Pokhara University)</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-year">2025 May — 2025 Oct.</div>
+              <div class="tl-role">Visiting Lecturer</div>
+              <div class="tl-org">National College of Management and Technology (Lincoln University)</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-year">2023 Apr. — 2023 Nov.</div>
+              <div class="tl-role">STEM Instructor · R&amp;D Associate</div>
+              <div class="tl-org">Dursikshya Education Network</div>
+          </div>
+          <div class="tl-item">
+              <div class="tl-year">2022 Apr. — 2023 Feb.</div>
+              <div class="tl-role">STEM Trainer </div>
+              <div class="tl-org">Khudkila Education</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-year">2021 Feb. — 2021 June</div>
+              <div class="tl-role">Freelance </div>
+              <div class="tl-org">Cloud Factory</div>
+            </div>
+          </div>
+
+        </section>
+        <!-- ═══ END HOME ═══ -->
+
+        <!-- ═══ PROJECTS ═══ -->
+        <section id="Projects" class="content-section">
+
+          <div class="sec-eyebrow">02 // Selected Work</div>
+          <h2 class="sec-title">Projects &amp;<br><em>Research</em></h2>
+
+          <div class="Projects-list">
+
+            <div class="Project-card">
+              <div>
+                <div class="Project-num">01 — AI &amp; Urban Systems</div>
+                <div class="Project-title">AI-Based Traffic Management System</div>
+                <div class="Project-desc">
+                  A real-time computer vision pipeline that analyzes live traffic density using object detection
+                  models to dynamically optimize signal timing — reducing congestion through adaptive,
+                  data-driven control logic.
+                </div>
+                <div class="project-tags">
+                  <span class="tag">Computer Vision</span>
+                  <span class="tag">YOLOv8</span>
+                  <span class="tag">Object Detection</span>
+                  <span class="tag">Embedded Systems</span>
+                  <span class="tag">Python</span>
+                </div>
+              </div>
+              <div class="project-arrow">↗</div>
+            </div>
+
+            <div class="project-card">
+              <div>
+                <div class="project-num">02 — IoT &amp; Safety</div>
+                <div class="project-title">Vehicle Accident Detection System</div>
+                <div class="project-desc">
+                  An embedded safety system using the MPU6050 IMU sensor to detect sudden collision events
+                  with threshold-based signal processing, triggering real-time alerts and GPS-based location
+                  reporting.
+                </div>
+                <div class="project-tags">
+                  <span class="tag">MPU6050</span>
+                  <span class="tag">Arduino</span>
+                  <span class="tag">IoT</span>
+                  <span class="tag">Signal Processing</span>
+                  <span class="tag">GSM/GPS</span>
+                </div>
+              </div>
+              <div class="project-arrow">↗</div>
+            </div>
+
+            <div class="project-card">
+              <div>
+                <div class="project-num">03 — Autonomous Driving</div>
+                <div class="project-title">Optimizing CNNs for Steering Angle Prediction</div>
+                <div class="project-desc">
+                  End-to-end deep learning model for autonomous vehicle control. Explored architecture pruning,
+                  depthwise separable convolutions, and quantization strategies to achieve high prediction
+                  accuracy within tight latency constraints.
+                </div>
+                <div class="project-tags">
+                  <span class="tag">CNN</span>
+                  <span class="tag">PyTorch</span>
+                  <span class="tag">Model Optimization</span>
+                  <span class="tag">Autonomous Systems</span>
+                  <span class="tag">End-to-End Learning</span>
+                </div>
+              </div>
+              <div class="project-arrow">↗</div>
+            </div>
+
+            <div class="project-card">
+              <div>
+                <div class="project-num">04 — Financial AI</div>
+                <div class="project-title">NEPSE Stock Index Prediction using LSTM</div>
+                <div class="project-desc">
+                  Recurrent deep learning model trained on Nepal Stock Exchange historical data. Applied
+                  sliding-window feature engineering, dropout regularization, and hyperparameter tuning for
+                  multi-step price forecasting.
+                </div>
+                <div class="project-tags">
+                  <span class="tag">LSTM</span>
+                  <span class="tag">TensorFlow</span>
+                  <span class="tag">Time Series</span>
+                  <span class="tag">Financial ML</span>
+                  <span class="tag">NEPSE</span>
+                </div>
+              </div>
+              <div class="project-arrow">↗</div>
+            </div>
+
+          </div>
+        </section>
+        <!-- ═══ END PROJECTS ═══ -->
+
+        <!-- ═══ CONTACT ═══ -->
+        <section id="contact" class="content-section">
+
+          <div class="sec-eyebrow">03 // Get In Touch</div>
+          <h2 class="sec-title">Let's<br><em>Connect</em></h2>
+
+          <p class="contact-intro">
+            I'm open to research collaborations, academic discussions, guest lectures, and project
+            partnerships. Whether you're a fellow researcher, institution, or industry professional; feel free to reach out.
+          </p>
+
+          <div class="contact-grid">
+
+            <a href="mailto:bibekshrestha881@gmail.com" class="contact-card">
+              <span class="cc-icon">✉️</span>
+              <div class="cc-label">Email</div>
+              <div class="cc-val">bibekshrestha881@gmail.com</div>
+              <span class="cc-arrow">↗</span>
+            </a>
+
+            <a href="https://www.linkedin.com/in/bibek-shrestha-b73095259/" target="_blank" class="contact-card">
+              <span class="cc-icon">💼</span>
+              <div class="cc-label">LinkedIn</div>
+              <div class="cc-val">bibek-shrestha-b73095259</div>
+              <span class="cc-arrow">↗</span>
+            </a>
+
+            <a href="https://scholar.google.com/citations?user=CVACgbMAAAAJ&hl=en" target="_blank" class="contact-card">
+              <span class="cc-icon">📚</span>
+              <div class="cc-label">Google Scholar</div>
+              <div class="cc-val">View Publications &amp; Citations</div>
+              <span class="cc-arrow">↗</span>
+            </a>
+
+            <a href="https://www.researchgate.net/profile/Bibek-Shrestha-27" target="_blank" class="contact-card">
+              <span class="cc-icon">🔬</span>
+              <div class="cc-label">ResearchGate</div>
+              <div class="cc-val">Bibek Shrestha Profile</div>
+              <span class="cc-arrow">↗</span>
+            </a>
+
+            <a href="https://github.com/BIBEKSHRESTHA08" target="_blank" class="contact-card">
+              <span class="cc-icon">⌨️</span>
+              <div class="cc-label">GitHub</div>
+              <div class="cc-val">BIBEKSHRESTHA08</div>
+              <span class="cc-arrow">↗</span>
+            </a>
+
+            <a href="https://drive.google.com/drive/folders/11VK08M0vjTe7zJIuaiQjf_ewoAiNN72T"
+               target="_blank" class="contact-card">
+              <span class="cc-icon">📄</span>
+              <div class="cc-label">CV / Resume</div>
+              <div class="cc-val">Download from Google Drive</div>
+              <span class="cc-arrow">↗</span>
+            </a>
+
+          </div>
+
+          <div class="avail-block">
+            <div class="avail-dot"></div>
+            <div class="avail-text">
+              <strong>Currently available</strong> for research collaborations, joint publications, and
+              academic consulting. Based in <strong>Kathmandu, Nepal</strong>-open to remote &amp;
+              on-site opportunities.
+            </div>
+          </div>
+
+        </section>
+        <!-- ═══ END CONTACT ═══ -->
+
+      </main>
+      <!-- ──────────── END MAIN CONTENT ──────────── -->
+
+    </div>
+    <!-- ── END BODY GRID ── -->
+
+    <!-- ── FOOTER ── -->
+    <footer class="site-footer">
+      <div>© 2026 Bibek Shrestha — All rights reserved</div>
+      <div class="footer-right">
+        <span>Kathmandu, Nepal</span>
+        <div class="footer-divider"></div>
+        <span>HTML · CSS · JS</span>
+      </div>
     </footer>
+
+  </div>
+  <!-- ═══ END PAGE WRAPPER ═══ -->
+
+  <!-- JavaScript (loaded last so DOM is ready) -->
+  <script src="script.js"></script>
 
 </body>
 </html>
-
