@@ -612,8 +612,8 @@ body::before {
 .tl-role { font-size: 0.88rem; font-weight: 500; color: var(--text); margin-bottom: 2px; }
 .tl-org  { font-size: 0.78rem; color: var(--text-muted); }
 
-/* ── PROJECTS ── */
-.projects-list {
+/* ── ProjectS ── */
+.Projects-list {
   display: flex;
   flex-direction: column;
   gap: 1px;
@@ -622,7 +622,7 @@ body::before {
   overflow: hidden;
 }
 
-.project-card {
+.Project-card {
   background: var(--bg);
   padding: 32px 36px;
   display: grid;
@@ -635,7 +635,7 @@ body::before {
   overflow: hidden;
 }
 
-.project-card::before {
+.Project-card::before {
   content: '';
   position: absolute;
   left: 0; top: 0; bottom: 0;
@@ -646,10 +646,10 @@ body::before {
   transition: transform 0.4s var(--ease-spring);
 }
 
-.project-card:hover { background: var(--surface); }
-.project-card:hover::before { transform: scaleY(1); }
+.Project-card:hover { background: var(--surface); }
+.Project-card:hover::before { transform: scaleY(1); }
 
-.project-num {
+.Project-num {
   font-family: var(--mono);
   font-size: 0.6rem;
   color: var(--text-dim);
@@ -658,7 +658,7 @@ body::before {
   margin-bottom: 10px;
 }
 
-.project-title {
+.Project-title {
   font-family: var(--serif);
   font-size: 1.3rem;
   font-weight: 300;
@@ -668,9 +668,9 @@ body::before {
   transition: color 0.25s;
 }
 
-.project-card:hover .project-title { color: var(--gold-light); }
+.Project-card:hover .Project-title { color: var(--gold-light); }
 
-.project-desc {
+.Project-desc {
   font-size: 0.8rem;
   color: var(--text-muted);
   line-height: 1.7;
@@ -678,7 +678,7 @@ body::before {
   margin-bottom: 14px;
 }
 
-.project-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.Project-tags { display: flex; flex-wrap: wrap; gap: 5px; }
 
 .tag {
   font-family: var(--mono);
@@ -692,19 +692,19 @@ body::before {
   transition: all 0.2s;
 }
 
-.project-card:hover .tag {
+.Project-card:hover .tag {
   border-color: var(--border-hi);
   color: var(--text);
 }
 
-.project-arrow {
+.Project-arrow {
   font-size: 1.2rem;
   color: var(--text-dim);
   transition: all 0.3s var(--ease-spring);
   padding-top: 4px;
 }
 
-.project-card:hover .project-arrow {
+.Project-card:hover .Project-arrow {
   color: var(--gold);
   transform: translate(3px, -3px);
 }
@@ -914,6 +914,6 @@ body::before {
   .top-banner       { padding: 12px 24px; }
   .banner-status    { display: none; }
   .contact-grid     { grid-template-columns: 1fr; }
-  .project-card     { grid-template-columns: 1fr; }
+  .Project-card     { grid-template-columns: 1fr; }
   .site-footer      { padding: 16px 24px; }
 }
